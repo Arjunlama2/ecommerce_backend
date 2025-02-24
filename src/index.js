@@ -1,5 +1,6 @@
 const express = require("express");
 const fileUpload = require("express-fileupload");
+const cors=require("cors")
 
 const app = express();
 // throw new Error("custom error")
@@ -9,7 +10,7 @@ const orderRoutes = require("./route/order")
 const handleServerError = require("./middleware/handleServerError");
 require('dotenv').config()
 require("./config/database");
-
+app.use(cors())
 app.use(express.json()); // global middleware,  sets up req.body
 app.use(fileUpload()); // handles form-data
 
