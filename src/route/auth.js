@@ -37,7 +37,7 @@ router.get("/me", (req, res, next) => {
     req.user = user;
     
     next();
-  } catch (err) {
+  } catch (err) {gg
     console.log("this is error",err)
     res.status(403).send({msg:"unauthorised"})
   }
