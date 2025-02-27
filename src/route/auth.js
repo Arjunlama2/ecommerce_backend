@@ -1,4 +1,4 @@
-const { signup, login } = require("../controller/auth");
+const { signup, login, getMe } = require("../controller/auth");
 
 const express = require("express");
 const { checkAuthentication } = require("../middleware/auth");
@@ -26,6 +26,19 @@ const loginValidationSchema = Joi.object({
 
 router.post("/signup", checkValidationSchmea(signupValidationSchema), signup);
 router.post("/login", checkValidationSchmea(loginValidationSchema), login);
+router.post("/me", (req, res, next) => {
+  let token = req.headers?.authorization.split(" ")[1];
+  let user = null;
+  try {
+    user = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = user;
+    next();
+  } catch (err) {
+    res.status(403).send({msg:"unauthorised"})
+  }
+},getMe
+);
+
 
 module.exports = router;
 

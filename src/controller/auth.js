@@ -57,7 +57,12 @@ const logout = () =>{
 
 }
 
+const getMe=(req,res)=>{
+res.send(req.user)
+}
+
 module.exports = {
   signup,
   login,
+  getMe
 };
