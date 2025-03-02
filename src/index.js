@@ -1,7 +1,7 @@
 const express = require("express");
 const fileUpload = require("express-fileupload");
 const cors=require("cors")
-
+const path =require("path")
 const app = express();
 // throw new Error("custom error")
 const productRoutes = require("./route/product");
@@ -14,8 +14,7 @@ app.use(cors())
 app.use(express.json()); // global middleware,  sets up req.body
 app.use(fileUpload()); // handles form-data
 
-/* serve static files */
-app.use("/uploads", express.static("uploads"));
+app.use("/src/uploads", express.static(path.join(__dirname, "uploads")))
 app.get("/",(req,res)=>{
   console.log("requested")
 res.send("Hello world")
