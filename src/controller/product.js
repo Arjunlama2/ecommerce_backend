@@ -110,7 +110,7 @@ const storeProduct = async (req, res, next) => {
       let uniqueTimestap = Date.now() + Math.floor(Math.random() * 1000);
 
       imagePath = path
-        .join("/", "uploads", `${uniqueTimestap}-${req.files.image.name}`)
+        .join("/", "src/uploads", `${uniqueTimestap}-${req.files.image.name}`)
         .replaceAll("\\", "/");
       req.files.image.mv(path.join(rootPath, imagePath));
     }
