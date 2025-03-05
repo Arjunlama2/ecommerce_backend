@@ -7,6 +7,7 @@ const app = express();
 const productRoutes = require("./route/product");
 const authRoutes = require("./route/auth");
 const orderRoutes = require("./route/order")
+const cart=require("./route/cart")
 const handleServerError = require("./middleware/handleServerError");
 require('dotenv').config()
 require("./config/database");
@@ -22,6 +23,7 @@ res.send("Hello world")
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api", cart);
 
 app.use(handleServerError);
 // fs.writeFileSync(path.join(path.resolve(),"custom.txt"),"our text" );
